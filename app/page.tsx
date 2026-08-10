@@ -3,19 +3,7 @@
 import { useState } from "react";
 
 export default function Home() {
-  const [code, setCode] = useState(`def calculate_average(numbers):
-    if not numbers:
-        raise ValueError("The list cannot be empty.")
-
-    if not all(isinstance(number, (int, float)) for number in numbers):
-        raise ValueError("All values must be numbers.")
-
-    return sum(numbers) / len(numbers)
-
-
-numbers = [10, 20, 30, 40]
-print(calculate_average(numbers))`);
-
+  const [code, setCode] = useState("");
   const [language, setLanguage] = useState("Python");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
@@ -115,7 +103,9 @@ print(calculate_average(numbers))`);
 
             <div>
               <h1 className="text-lg font-semibold">Code Review AI</h1>
-              <p className="text-sm text-gray-500">Intelligent Code Analysis</p>
+              <p className="text-sm text-gray-500">
+                Intelligent Code Analysis
+              </p>
             </div>
           </div>
 
@@ -188,6 +178,7 @@ print(calculate_average(numbers))`);
               value={code}
               onChange={(e) => setCode(e.target.value)}
               spellCheck={false}
+              placeholder="Paste your code here..."
               className="min-h-[480px] w-full resize-none bg-[#0c0c0f] p-6 font-mono text-sm leading-7 text-gray-200 outline-none"
             />
 
@@ -261,9 +252,7 @@ print(calculate_average(numbers))`);
                           : "text-green-400"
                       }`}
                     >
-                      {hasSecurityIssues
-                        ? "Issues Found"
-                        : "No Issues"}
+                      {hasSecurityIssues ? "Issues Found" : "No Issues"}
                     </p>
                   </div>
 
